@@ -14,3 +14,12 @@ a {
 * {
   box-sizing: border-box;
 }
+
+.container {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  height: 100vh;
+  margin: auto;
+  max-width: 800px;
+  text-align: center;
+}
