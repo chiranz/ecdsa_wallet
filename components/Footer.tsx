@@ -1,5 +1,5 @@
 import React, { ReactElement } from "react";
-import styles from "./Footer.module.css";
+import styles from "./styles/Footer.module.css";
 
 interface Props {}
 
@@ -14,6 +14,16 @@ export default function Footer({}: Props): ReactElement {
         rel="noopener noreferrer"
       >
         Chiranjibi
+      </a>
+      <br />
+      <br />
+      <a
+        className={styles.link}
+        href="https://github.com/chiranz/ecdsa_wallet"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Github Repo
       </a>
     </footer>
   );

@@ -1,14 +1,19 @@
 import React, { ReactElement } from "react";
-import styles from "./Button.module.css";
+import styles from "./styles/Button.module.css";
 
 interface Props {
   children: React.ReactNode;
   onClick: () => void;
+  disabled?: boolean;
 }
 
-export default function Button({ children, onClick }: Props): ReactElement {
+export default function Button({
+  children,
+  onClick,
+  disabled,
+}: Props): ReactElement {
   return (
-    <button className={styles.button} onClick={onClick}>
+    <button disabled={disabled} className={styles.button} onClick={onClick}>
       {children}
     </button>
   );

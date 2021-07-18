@@ -1,16 +1,20 @@
-import React, { ReactElement } from "react";
-import styles from "./InputField.module.css";
+import React, { ChangeEventHandler, ReactElement } from "react";
+import styles from "./styles/InputField.module.css";
 
 interface Props {
   type?: string;
   placeholder: string;
-  onChange: () => void;
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  disabled?: boolean;
+  value: string | number;
 }
 
 export default function InputField({
   type = "text",
   placeholder,
   onChange,
+  disabled = false,
+  value,
 }: Props): ReactElement {
   return (
     <input
@@ -18,6 +22,8 @@ export default function InputField({
       type={type}
       placeholder={placeholder}
       onChange={onChange}
+      disabled={disabled}
+      value={value}
     />
   );
 }

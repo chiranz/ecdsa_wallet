@@ -1,0 +1,10 @@
+.messageBox {
+  position: absolute;
+  width: 300px;
+  background-color: rgba(29, 29, 255, 0.116);
+  right: 10px;
+  bottom: 10px;
+  padding: 0.5rem;
+  border-radius: 5px;
+  border: 1px solid blue;
+}
