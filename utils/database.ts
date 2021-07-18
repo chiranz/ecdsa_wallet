@@ -22,9 +22,3 @@ async function dbConnect() {
 }
 
 export default dbConnect;
-
-export async function connect() {
-  //   if (!client.isConnected()) await client.connect();
-  //   const db = client.db("sightings");
-  //   return { db, client };
-}
