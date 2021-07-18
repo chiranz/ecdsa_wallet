@@ -3,10 +3,10 @@ import mongoose, { connect, ConnectionOptions } from "mongoose";
 const connection: { isConnected?: any } = {};
 
 const options: ConnectionOptions = {
-  useNewUrlParser: true,
+  useFindAndModify: true,
   useUnifiedTopology: true,
   useCreateIndex: true,
-  useFindAndModify: false,
+  useNewUrlParser: true,
 };
 
 async function dbConnect() {
