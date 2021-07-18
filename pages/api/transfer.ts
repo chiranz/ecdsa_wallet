@@ -1,7 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import { verifyTransaction } from "../../helpers";
-import Wallet from "../../models/Wallet";
-import Transfer from "../../models/Transfer";
+import { Wallet } from "../../models/Wallet";
+import { Transfer } from "../../models/Transfer";
 import dbConnect from "../../utils/database";
 
 dbConnect();
@@ -26,7 +26,7 @@ export default async function wallet(
 
     console.log("Here");
     console.log(verified);
-    if (verified && _recepient) {
+    if (verified && _recepient && _sender) {
       _sender.balance -= amount;
       _recepient.balance += amount;
       console.log(typeof amount);

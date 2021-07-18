@@ -13,6 +13,15 @@ export const generateWallet = (): WalletProps => {
   console.log(privateKey.toString(), publicKey);
   return { privateKey, publicKey };
 };
+export const getWalletFromPrivateKey = (privateKey: string) => {
+  const ec = new EC("secp256k1");
+  const key = ec.keyFromPrivate(`0x${privateKey}`);
+  const _privateKey = key.getPrivate().toString();
+  console.log({ _privateKey, privateKey });
+  const publicKey = key.getPublic().encode("hex", true).toString();
+  console.log(privateKey.toString(), publicKey);
+  return { privateKey, publicKey };
+};
 
 type TxnInputs = {
   to: string;

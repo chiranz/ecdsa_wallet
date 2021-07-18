@@ -1,4 +1,9 @@
-import mongoose from "mongoose";
+import mongoose, { Document, Model } from "mongoose";
+
+export interface IWallet extends Document {
+  publicKey: String;
+  balance: Number | any;
+}
 
 const WalletSchema = new mongoose.Schema({
   publicKey: {
@@ -11,4 +16,5 @@ const WalletSchema = new mongoose.Schema({
   },
 });
 
-export default mongoose.models.Wallet || mongoose.model("Wallet", WalletSchema);
+export const Wallet: Model<IWallet> =
+  mongoose.models.Wallet || mongoose.model("Wallet", WalletSchema);

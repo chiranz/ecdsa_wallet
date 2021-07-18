@@ -1,18 +1,23 @@
-import mongoose from "mongoose";
+import mongoose, { connect, ConnectionOptions } from "mongoose";
 
 const connection: { isConnected?: any } = {};
+
+const options: ConnectionOptions = {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+  useCreateIndex: true,
+  useFindAndModify: false,
+};
 
 async function dbConnect() {
   try {
     if (connection.isConnected) {
       return;
     }
-    const db = await mongoose.connect(process.env.MONGO_URI || "", {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-      useCreateIndex: true,
-      useFindAndModify: false,
-    });
+    const db = await connect(
+      process.env.MONGO_URI || "mongodb://localhost:27017/next_test",
+      options
+    );
     connection.isConnected = db.connections[0].readyState;
     console.log("DB connected successfully");
   } catch (err) {

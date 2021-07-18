@@ -5,12 +5,14 @@ import Button from "../components/Button";
 import InputField from "../components/InputField";
 import Transfer from "../components/Transfer";
 import { WalletContext, WalletContextType } from "../context/WalletContext";
+import { getWalletFromPrivateKey } from "../helpers";
 import styles from "../styles/Home.module.css";
 
 export default function Home() {
   const [privateKey, setPrivateKey] = useState("");
   const { wallet } = React.useContext(WalletContext) as WalletContextType;
   const handleConnect = () => {
+    getWalletFromPrivateKey(privateKey);
     // TODO: Save private key & public key in local storage
     // TODO: connect to database using the public key
 

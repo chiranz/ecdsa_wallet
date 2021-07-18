@@ -1,4 +1,10 @@
-import mongoose from "mongoose";
+import mongoose, { Model, Document } from "mongoose";
+
+export interface IWallet extends Document {
+  from: String;
+  to: String;
+  amount: Number;
+}
 
 const TransferSchema = new mongoose.Schema({
   from: {
@@ -12,5 +18,5 @@ const TransferSchema = new mongoose.Schema({
   },
 });
 
-export default mongoose.models.Transfer ||
-  mongoose.model("Transfer", TransferSchema);
+export const Transfer: Model<IWallet> =
+  mongoose.models.Transfer || mongoose.model("Transfer", TransferSchema);
