@@ -1,5 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from "next";
-import { Wallet } from "../../models/Wallet";
+import Wallet from "../../models/Wallet";
 import dbConnect from "../../utils/database";
 
 dbConnect();

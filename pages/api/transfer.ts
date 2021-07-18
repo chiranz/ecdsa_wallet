@@ -1,7 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import { verifyTransaction } from "../../helpers";
-import { Wallet } from "../../models/Wallet";
-import { Transfer } from "../../models/Transfer";
+import Wallet from "../../models/Wallet";
+import Transfer from "../../models/Transfer";
 import dbConnect from "../../utils/database";
 
 dbConnect();
