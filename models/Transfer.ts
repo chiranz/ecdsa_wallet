@@ -10,6 +10,7 @@ const TransferSchema = new mongoose.Schema({
   amount: {
     type: Number,
   },
+  created_at: { type: Date, default: Date.now },
 });
 
 export default mongoose.models.Transfer ||

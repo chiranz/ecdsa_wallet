@@ -5,7 +5,10 @@ import styles from "./styles/AddressTable.module.css";
 interface Props {}
 
 export default function AddressTable({}: Props): ReactElement {
-  const { wallets } = React.useContext(WalletContext) as WalletContextType;
+  const { wallets, transfers } = React.useContext(
+    WalletContext
+  ) as WalletContextType;
+  console.log(transfers);
   return (
     <div style={{ width: "100%", marginBottom: "4rem" }}>
       <h1>Registered Address</h1>

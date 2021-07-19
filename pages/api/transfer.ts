@@ -10,8 +10,6 @@ export default async function wallet(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  // TODO: check if recepient address is in the network if not errorMsg: wrong recepient address
-  //
   if (req.method === "POST") {
     const { r, s, publicKey, to, amount } = req.body;
     const verified = verifyTransaction({ r, s, publicKey, to, amount });

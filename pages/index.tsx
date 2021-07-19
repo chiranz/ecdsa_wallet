@@ -4,6 +4,7 @@ import AddressTable from "../components/AddressTable";
 import Button from "../components/Button";
 import InputField from "../components/InputField";
 import Transfer from "../components/Transfer";
+import TransfersTable from "../components/TransfersTable";
 import { WalletContext, WalletContextType } from "../context/WalletContext";
 import { getWalletFromPrivateKey } from "../helpers";
 import styles from "../styles/Home.module.css";
@@ -42,6 +43,7 @@ export default function Home() {
           <Transfer />
         )}
       </main>
+      <TransfersTable />
       <AddressTable />
     </>
   );
