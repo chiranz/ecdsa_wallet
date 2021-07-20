@@ -16,9 +16,12 @@ export const generateWallet = (): WalletProps => {
 
 export const getWalletFromPrivateKey = (privateKey: string) => {
   const ec = new EC("secp256k1");
-  const key = ec.keyFromPrivate(privateKey);
-  const _privateKey = key.getPrivate().toString();
+  const key = ec.keyFromPrivate(privateKey, "hex");
+  const _privateKey = key.getPrivate().toString(16);
   console.log({ _privateKey, privateKey });
+  if (_privateKey !== privateKey) {
+    throw new Error("Please enter a valid private key!");
+  }
   const publicKey = key.getPublic().encode("hex", true).toString();
   console.log(privateKey.toString(), publicKey);
   return { privateKey, publicKey };
