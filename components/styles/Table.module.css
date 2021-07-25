@@ -1,0 +1,26 @@
+.tableRow {
+  width: 100%;
+  display: inline-flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 0 0.5rem 0;
+}
+
+.dataScroll {
+  color: "grey";
+  overflow: "scroll";
+  max-height: "10rem";
+  max-width: "20rem";
+}
+.dataScroll::-webkit-scrollbar {
+  width: 1em;
+}
+
+.dataScroll::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}
+
+.dataScroll::-webkit-scrollbar-thumb {
+  background-color: darkgrey;
+  outline: 1px solid slategrey;
+}

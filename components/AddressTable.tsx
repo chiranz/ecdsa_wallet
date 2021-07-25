@@ -1,6 +1,6 @@
 import React, { ReactElement } from "react";
 import { WalletContext, WalletContextType } from "../context/WalletContext";
-import styles from "./styles/AddressTable.module.css";
+import styles from "./styles/Table.module.css";
 
 interface Props {}
 
@@ -11,7 +11,7 @@ export default function AddressTable({}: Props): ReactElement {
   console.log(transfers);
   return (
     <div style={{ width: "100%", marginBottom: "4rem" }}>
-      <h1>Registered Address</h1>
+      <h1>Registered Wallets</h1>
       <table style={{ width: "100%" }}>
         <thead style={{ width: "100%" }}>
           <tr className={styles.tableRow}>

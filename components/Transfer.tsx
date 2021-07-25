@@ -13,6 +13,7 @@ export default function Transfer(): ReactElement {
 
   const [_recepient, setRecepient] = useState("");
   const [_amount, setAmount] = useState(0);
+  const [fee, setFee] = useState(0);
   const handleSend = async () => {
     console.log("Sending transaction");
     const { publicKey, r, s, to, amount } = signTransaction({
@@ -61,6 +62,16 @@ export default function Transfer(): ReactElement {
             value={_amount || ""}
             onChange={(e) => {
               setAmount(parseInt(e.target.value));
+            }}
+          />
+        </div>
+        <div className="input-field">
+          <InputField
+            placeholder="miner fee"
+            type="number"
+            value={fee || ""}
+            onChange={(e) => {
+              setFee(parseInt(e.target.value));
             }}
           />
         </div>

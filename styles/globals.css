@@ -23,3 +23,20 @@ a {
   max-width: 800px;
   text-align: center;
 }
+
+.heading {
+  padding: 0;
+  margin: 0;
+  text-align: left;
+}
+
+.text_secondary {
+  color: grey;
+}
+
+.text_info {
+  color: blue;
+}
+.text_primary {
+  color: #0d9898;
+}

@@ -11,3 +11,27 @@
 .brand {
   font-size: 1.5rem;
 }
+.brand:hover {
+  text-decoration: underline;
+}
+
+.navLink {
+  margin-right: 1rem;
+  color: #0d9898;
+  position: relative;
+  display: inline-block;
+}
+.navLink:hover {
+  text-decoration: underline;
+  color: #0b7a7a;
+}
+
+.badge {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: blue;
+}

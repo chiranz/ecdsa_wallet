@@ -2,7 +2,7 @@ import dayjs from "dayjs";
 import relativePlugin from "dayjs/plugin/relativeTime";
 import React, { ReactElement } from "react";
 import { WalletContext, WalletContextType } from "../context/WalletContext";
-import styles from "./styles/AddressTable.module.css";
+import styles from "./styles/Table.module.css";
 
 dayjs.extend(relativePlugin);
 interface Props {}
