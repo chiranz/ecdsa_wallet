@@ -4,6 +4,6 @@
 // Use Ctrl+Space inside a snippet or a string literal to trigger completions.
 
 // Select the database to use.
-use('ecdsaexchange');
+use('ecdsa_wallet');
 
-db.transfers.find({});
+db.utxos.find({})

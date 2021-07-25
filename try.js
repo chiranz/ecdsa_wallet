@@ -16,7 +16,8 @@ const getWalletFromPrivateKey = (privateKey) => {
   const ec = new EC("secp256k1");
   const key = ec.keyFromPrivate(privateKey, "hex");
   const _privateKey = key.getPrivate().toString(16);
-  console.log({ _privateKey, privateKey });
+  const publicKey = key.getPublic().encode("hex", true).toString();
+  console.log({ _privateKey, privateKey, publicKey });
 };
 
 getWalletFromPrivateKey();

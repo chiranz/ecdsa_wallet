@@ -1,4 +1,6 @@
-import { Schema, models, model } from "mongoose";
+import { Schema, models, model, Document } from "mongoose";
+
+export interface UTXODocument extends IUTXO, Document {}
 
 const UTXOSchema = new Schema({
   owner: {
@@ -11,8 +13,8 @@ const UTXOSchema = new Schema({
   },
   spent: {
     type: Boolean,
-    required: true,
+    default: false,
   },
 });
 
-export default models.UTXO || model("UTXO", UTXOSchema);
+export default models.UTXO || model<UTXODocument>("UTXO", UTXOSchema);

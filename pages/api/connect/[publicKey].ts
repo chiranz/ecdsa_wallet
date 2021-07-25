@@ -1,4 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from "next";
+import UTXO from "../../../models/UTXO";
 import Wallet from "../../../models/Wallet";
 import dbConnect from "../../../utils/database";
 
@@ -18,6 +19,10 @@ export default async function connect(
     } else {
       try {
         wallet = await Wallet.create({ publicKey });
+        await UTXO.create({
+          owner: wallet._id,
+          amount: 100,
+        });
         return res.status(201).send({ success: true, wallet });
       } catch (err) {
         return res

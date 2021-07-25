@@ -13,17 +13,18 @@ export default function Transfer(): ReactElement {
 
   const [_recepient, setRecepient] = useState("");
   const [_amount, setAmount] = useState(0);
-  const [fee, setFee] = useState(0);
+  const [_fee, setFee] = useState(0);
   const handleSend = async () => {
     console.log("Sending transaction");
-    const { publicKey, r, s, to, amount } = signTransaction({
+    const { publicKey, r, s, to, amount, fee } = signTransaction({
       privateKey: wallet.privateKey,
       amount: _amount,
       to: _recepient,
+      fee: _fee,
     });
     //TODO:  Send transaction to the server
     try {
-      await axios.post("/api/transfer", { publicKey, r, s, to, amount });
+      await axios.post("/api/transfer", { publicKey, r, s, to, amount, fee });
     } catch (err) {
       console.log(err);
     }
@@ -69,7 +70,7 @@ export default function Transfer(): ReactElement {
           <InputField
             placeholder="miner fee"
             type="number"
-            value={fee || ""}
+            value={_fee || ""}
             onChange={(e) => {
               setFee(parseInt(e.target.value));
             }}

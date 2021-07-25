@@ -31,19 +31,21 @@ type TxnInputs = {
   to: string;
   amount: number;
   privateKey: string;
+  fee: number;
 };
 
 export const signTransaction = ({
   to,
   amount,
   privateKey,
+  fee,
 }: TxnInputs): SignedTxn => {
   const ec = new EC("secp256k1");
   const key = ec.keyFromPrivate(privateKey);
   const publicKey = key.getPublic().encode("hex", true).toString();
 
   // TODO: change this message to whatever you would like to sign
-  const txn = { to, amount };
+  const txn = { to, amount, fee };
   const txnHash = SHA256(JSON.stringify(txn));
   const signature = key.sign(txnHash.toString());
   console.log({
@@ -58,6 +60,7 @@ export const signTransaction = ({
   return {
     to,
     amount,
+    fee,
     publicKey,
     r: signature.r.toString(16),
     s: signature.s.toString(16),
@@ -69,6 +72,7 @@ type SignedTxn = {
   publicKey: string;
   to: string;
   amount: number;
+  fee: number;
 };
 
 export const verifyTransaction = ({
@@ -77,12 +81,13 @@ export const verifyTransaction = ({
   s,
   to,
   amount,
+  fee,
 }: SignedTxn): boolean => {
   const ec = new EC("secp256k1");
 
   const key = ec.keyFromPublic(publicKey, "hex");
 
-  const txn = { to, amount };
+  const txn = { to, amount, fee };
   const txnHash = SHA256(JSON.stringify(txn)).toString();
 
   const signature = {

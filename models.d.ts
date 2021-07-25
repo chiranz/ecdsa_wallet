@@ -20,3 +20,7 @@ interface IUTXO {
   amount: number;
   spent: boolean;
 }
+
+interface IWallet {
+  privateKey: string;
+}
