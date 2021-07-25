@@ -15,12 +15,15 @@ export default async function wallets(
         success: false,
         global: "Something went wrong on server side!",
       });
-    console.log(wallets);
-    // TODO: verify if walletUTXOs is unspent
+
     for (let i = 0; i < wallets.length; i++) {
       const wallet = wallets[i];
       let balance = 0;
-      const walletUTXOs = await UTXO.find({ owner: wallet._id, spent: false });
+      const walletUTXOs = await UTXO.find({
+        owner: wallet._id,
+        spent: false,
+        mined: true,
+      });
 
       for (let utxo of walletUTXOs) {
         balance += utxo.amount;

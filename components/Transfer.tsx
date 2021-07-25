@@ -37,6 +37,7 @@ export default function Transfer(): ReactElement {
       )}...`
     );
     setAmount(0);
+    setFee(0);
     setRecepient("");
     setTimeout(() => {
       setGlobalMessage("");

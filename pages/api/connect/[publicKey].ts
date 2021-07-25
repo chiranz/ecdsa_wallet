@@ -22,6 +22,7 @@ export default async function connect(
         await UTXO.create({
           owner: wallet._id,
           amount: 100,
+          mined: true,
         });
         return res.status(201).send({ success: true, wallet });
       } catch (err) {

@@ -22,4 +22,4 @@ const getWalletFromPrivateKey = (privateKey) => {
 
 getWalletFromPrivateKey();
 
-getWalletFromPrivateKey(123);
+getWalletFromPrivateKey("this is my another wallet");

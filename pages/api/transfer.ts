@@ -4,6 +4,7 @@ import Wallet from "../../models/Wallet";
 import Transfer from "../../models/Transfer";
 import dbConnect from "../../utils/database";
 import UTXO, { UTXODocument } from "../../models/UTXO";
+import Transaction from "../../models/Transaction";
 
 dbConnect();
 
@@ -29,33 +30,52 @@ export default async function wallet(
     }
 
     console.log("Here");
-    console.log(verified);
     if (verified && _recepient && _sender) {
       // TODO: find all the utxos of sender upto the amount and fees
       // TODO: set utxos to transaction field with inputs and outputs
-      let inputUtxos = [];
-      let userUtxos = await UTXO.find({}, { _id: _sender._doc._id });
-      let utxoSum = 0;
+      try {
+        let senderUtxos = await UTXO.find({ owner: _sender._id });
+        let utxoSum = 0;
 
-      for (let utxo of userUtxos) {
-        if (!utxo.spent) {
-          inputUtxos.push(utxo);
-          utxoSum += utxo.amount;
+        const transaction = new Transaction({ fee, amount });
+
+        for (let utxo of senderUtxos) {
+          if (!utxo.spent) {
+            transaction.inputs.push(utxo._id);
+            utxoSum += utxo.amount;
+          }
+          if (utxoSum >= amount + fee) {
+            // extra amount in utxo
+            const diffAmount = utxoSum - (amount + fee);
+            // additional utxo to reach transfer amount
+            const senderUtxo = await UTXO.create({
+              owner: _sender._id,
+              amount: diffAmount,
+            });
+            const recieveAmount = utxo.amount - diffAmount - fee;
+            const recieverUtxo = await UTXO.create({
+              owner: _recepient._id,
+              amount: recieveAmount,
+            });
+
+            transaction.outputs.push(recieverUtxo._id);
+            transaction.outputs.push(senderUtxo._id);
+            break;
+          }
+          const recieverUtxo = await UTXO.create({
+            owner: _recepient._id,
+            amount: utxo.amount,
+          });
+          transaction.outputs.push(recieverUtxo._id);
         }
-        if (utxoSum >= amount + fee) break;
+
+        await transaction.save();
+        return res.status(200).json({ success: true });
+      } catch (err) {
+        return res
+          .status(500)
+          .json({ success: false, globalErr: "Opps!! something went wrong" });
       }
-      console.log(inputUtxos);
-      return res.status(200).json({ success: true });
-      // try {
-      //   await _sender.save();
-      //   await _recepient.save();
-      //   const transfer = await Transfer.create({ amount, from: publicKey, to });
-      //   return res.status(200).json({ success: true, data: transfer });
-      // } catch (err) {
-      //   return res
-      //     .status(400)
-      //     .json({ success: false, globalErr: "Opps!! transfer failed" });
-      // }
     }
   }
   return res

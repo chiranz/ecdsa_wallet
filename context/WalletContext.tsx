@@ -6,7 +6,7 @@ interface Props {
 }
 type WalletType = {
   publicKey?: string;
-  balance?: number;
+  balance?: number | null;
   privateKey?: string;
 };
 type TransferType = {
@@ -32,6 +32,7 @@ export const WalletProvider = ({ children }: Props) => {
   const [wallet, setWallet] = React.useState<WalletType>({
     privateKey: "",
     publicKey: "",
+    balance: null,
   });
   const [globalMessage, setGlobalMessage] = useState("");
   const [wallets, setWallets] = useState([]);

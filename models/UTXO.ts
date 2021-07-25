@@ -15,6 +15,10 @@ const UTXOSchema = new Schema({
     type: Boolean,
     default: false,
   },
+  mined: {
+    type: Boolean,
+    default: false,
+  },
 });
 
 export default models.UTXO || model<UTXODocument>("UTXO", UTXOSchema);
