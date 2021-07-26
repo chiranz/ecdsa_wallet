@@ -1,13 +1,13 @@
 import React, { ReactElement } from "react";
-import { WalletContext, WalletContextType } from "../context/WalletContext";
+import { GlobalContext, GlobalContextType } from "../context/Global";
 import styles from "./styles/Table.module.css";
 
 interface Props {}
 
 export default function AddressTable({}: Props): ReactElement {
   const { wallets, transfers } = React.useContext(
-    WalletContext
-  ) as WalletContextType;
+    GlobalContext
+  ) as GlobalContextType;
   console.log(transfers);
   return (
     <div style={{ width: "100%", marginBottom: "4rem" }}>

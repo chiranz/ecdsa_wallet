@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { ReactElement, useState } from "react";
-import { WalletContext, WalletContextType } from "../context/WalletContext";
+import { GlobalContext, GlobalContextType } from "../context/Global";
 import { signTransaction, verifyTransaction } from "../helpers";
 import Button from "./Button";
 import InputField from "./InputField";
@@ -8,8 +8,8 @@ import styles from "./styles/Transfer.module.css";
 
 export default function Transfer(): ReactElement {
   const { wallet, setGlobalMessage, refreshData } = React.useContext(
-    WalletContext
-  ) as WalletContextType;
+    GlobalContext
+  ) as GlobalContextType;
 
   const [_recepient, setRecepient] = useState("");
   const [_amount, setAmount] = useState(0);

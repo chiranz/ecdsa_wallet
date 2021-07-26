@@ -5,14 +5,14 @@ import AddressTable from "../components/AddressTable";
 import Button from "../components/Button";
 import InputField from "../components/InputField";
 import Transfer from "../components/Transfer";
-import { WalletContext, WalletContextType } from "../context/WalletContext";
+import { GlobalContext, GlobalContextType } from "../context/Global";
 import { getWalletFromPrivateKey } from "../helpers";
 
 export default function Home() {
   const [_privateKey, _setPrivateKey] = useState("");
   const { wallet, setWallet, setGlobalMessage } = React.useContext(
-    WalletContext
-  ) as WalletContextType;
+    GlobalContext
+  ) as GlobalContextType;
   const handleConnect = async () => {
     try {
       const { privateKey, publicKey } = getWalletFromPrivateKey(_privateKey);

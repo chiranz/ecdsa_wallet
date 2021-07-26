@@ -15,8 +15,14 @@ type TransferType = {
   amount: number;
   created_at?: string;
 };
+interface IMempoolTxn {
+  fee: string;
+  amount: number;
+  inputs: IUTXO[];
+  outputs: IUTXO[];
+}
 
-export type WalletContextType = {
+export type GlobalContextType = {
   wallets: WalletType[];
   transfers: TransferType[];
   wallet: { privateKey: string; publicKey: string };
@@ -24,11 +30,12 @@ export type WalletContextType = {
   globalMessage: string;
   setGlobalMessage: (value: string) => {};
   refreshData: () => void;
+  mempool: IMempoolTxn[];
 };
 
-export const WalletContext = React.createContext({});
+export const GlobalContext = React.createContext({});
 
-export const WalletProvider = ({ children }: Props) => {
+export const GlobalProvider = ({ children }: Props) => {
   const [wallet, setWallet] = React.useState<WalletType>({
     privateKey: "",
     publicKey: "",
@@ -36,6 +43,7 @@ export const WalletProvider = ({ children }: Props) => {
   });
   const [globalMessage, setGlobalMessage] = useState("");
   const [wallets, setWallets] = useState([]);
+  const [mempool, setMempool] = useState([]);
   const [transfers, setTransfers] = useState([]);
   async function init() {
     if (window) {
@@ -48,8 +56,10 @@ export const WalletProvider = ({ children }: Props) => {
     }
     const transfersRes = await axios.get("/api/transfers");
     const walletsRes = await axios.get("/api/wallets");
+    const mempoolRes = await axios.get("/api/mempool");
     setWallets(walletsRes.data.wallets);
     setTransfers(transfersRes.data.transfers);
+    setMempool(mempoolRes.data.transactions);
   }
   useEffect(() => {
     // Todo: Fetch from api and set data
@@ -60,7 +70,7 @@ export const WalletProvider = ({ children }: Props) => {
   };
 
   return (
-    <WalletContext.Provider
+    <GlobalContext.Provider
       value={{
         wallet,
         setWallet,
@@ -69,9 +79,10 @@ export const WalletProvider = ({ children }: Props) => {
         setGlobalMessage,
         refreshData,
         transfers,
+        mempool,
       }}
     >
       {children}
-    </WalletContext.Provider>
+    </GlobalContext.Provider>
   );
 };

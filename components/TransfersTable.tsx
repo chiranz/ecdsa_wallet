@@ -1,14 +1,14 @@
 import dayjs from "dayjs";
 import relativePlugin from "dayjs/plugin/relativeTime";
 import React, { ReactElement } from "react";
-import { WalletContext, WalletContextType } from "../context/WalletContext";
+import { GlobalContext, GlobalContextType } from "../context/Global";
 import styles from "./styles/Table.module.css";
 
 dayjs.extend(relativePlugin);
 interface Props {}
 
 export default function TransfersTable({}: Props): ReactElement {
-  const { transfers } = React.useContext(WalletContext) as WalletContextType;
+  const { transfers } = React.useContext(GlobalContext) as GlobalContextType;
   return (
     <div style={{ width: "100%", marginBottom: "4rem" }}>
       <h1>Recent Transfers</h1>

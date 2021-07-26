@@ -1,5 +1,5 @@
 import React from "react";
-import MempoolTable from "../components/MempoolTable";
+import MempoolTransactions from "../components/MempoolTransactions";
 import Button from "../components/Button";
 
 export default function Mempool() {
@@ -9,8 +9,8 @@ export default function Mempool() {
   return (
     <div style={{ width: "100%", marginBottom: "4rem" }}>
       <h2>Mempool</h2>
-      <MempoolTable />
-      <div style={{ textAlign: "right" }}>
+      <MempoolTransactions />
+      <div style={{ textAlign: "right", marginTop: "3rem" }}>
         <Button onClick={() => {}}>Mine</Button>
       </div>
     </div>

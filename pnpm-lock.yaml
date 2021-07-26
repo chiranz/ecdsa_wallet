@@ -15,6 +15,7 @@ specifiers:
   next: 11.0.1
   react: 17.0.2
   react-dom: 17.0.2
+  react-json-pretty: ^2.2.0
   typescript: 4.3.5
 
 dependencies:
@@ -27,6 +28,7 @@ dependencies:
   next: 11.0.1_f31b35bdaa3b7c2fce82404f09d2dac4
   react: 17.0.2
   react-dom: 17.0.2_react@17.0.2
+  react-json-pretty: 2.2.0_react-dom@17.0.2+react@17.0.2
 
 devDependencies:
   '@types/crypto-js': 4.0.2
@@ -2608,6 +2610,17 @@ packages:
 
   /react-is/17.0.2:
     resolution: {integrity: sha512-w2GsyukL62IJnlaff/nRegPQR94C/XXamvMWmSHRJ4y7Ts/4ocGRmTHvOs8PSE6pB3dWOrD/nueuU5sduBsQ4w==}
+    dev: false
+
+  /react-json-pretty/2.2.0_react-dom@17.0.2+react@17.0.2:
+    resolution: {integrity: sha512-3UMzlAXkJ4R8S4vmkRKtvJHTewG4/rn1Q18n0zqdu/ipZbUPLVZD+QwC7uVcD/IAY3s8iNVHlgR2dMzIUS0n1A==}
+    peerDependencies:
+      react: '>=15.0'
+      react-dom: '>=15.0'
+    dependencies:
+      prop-types: 15.7.2
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
     dev: false
 
   /react-refresh/0.8.3:

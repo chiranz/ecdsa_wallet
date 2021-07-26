@@ -5,7 +5,7 @@ export interface UTXODocument extends IUTXO, Document {}
 const UTXOSchema = new Schema({
   owner: {
     type: Schema.Types.ObjectId,
-    ref: "wallet",
+    ref: "Wallet",
   },
   amount: {
     type: Number,

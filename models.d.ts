@@ -19,6 +19,7 @@ interface IUTXO {
   owner: string;
   amount: number;
   spent: boolean;
+  mined: boolean;
 }
 
 interface IWallet {

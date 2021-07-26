@@ -1,11 +1,11 @@
 import React, { ReactElement } from "react";
 import Link from "next/link";
-import { WalletContext, WalletContextType } from "../context/WalletContext";
+import { GlobalContext, GlobalContextType } from "../context/Global";
 import AccountButton from "./AccountButton";
 import styles from "./styles/Header.module.css";
 
 export default function Header({}): ReactElement {
-  const { wallet } = React.useContext(WalletContext) as WalletContextType;
+  const { wallet } = React.useContext(GlobalContext) as GlobalContextType;
 
   return (
     <nav className={styles.navbar}>

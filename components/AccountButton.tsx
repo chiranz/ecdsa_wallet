@@ -2,12 +2,12 @@ import React, { ReactElement } from "react";
 import Button from "./Button";
 import { generateWallet } from "../helpers";
 import axios from "axios";
-import { WalletContext, WalletContextType } from "../context/WalletContext";
+import { GlobalContext, GlobalContextType } from "../context/Global";
 
 export default function AccountButton(): ReactElement {
   const { setGlobalMessage, setWallet } = React.useContext(
-    WalletContext
-  ) as WalletContextType;
+    GlobalContext
+  ) as GlobalContextType;
   const handleCreateWallet = async () => {
     const { privateKey, publicKey } = generateWallet();
     const response = await axios.get(`/api/connect/${publicKey}`);
